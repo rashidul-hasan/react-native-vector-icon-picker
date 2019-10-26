@@ -1,0 +1,24 @@
+{
+  "name": "react-native-vector-icon-picker",
+  "version": "0.1.0",
+  "description": "Vector icon picker component for React Native",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/rashidul-hasan/react-native-vector-icon-picker"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "react-native",
+    "dialog",
+    "progress-dialog",
+    "react component",
+    "react native component",
+    "android",
+    "ios"
+  ],
+  "author": "Rashidul Hasan",
+  "license": "MIT"
+}
