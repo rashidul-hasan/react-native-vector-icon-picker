@@ -2,8 +2,6 @@ import React, {Component} from "react";
 import {
     View,
     Modal,
-    ActivityIndicator,
-    StyleSheet,
     Text,
     TouchableOpacity,
     FlatList
@@ -12,10 +10,14 @@ import styles from './styles';
 
 const numColumns = 4;
 
-import IconIonicons from 'react-native-vector-icons/Ionicons';
+import Ionicons from 'react-native-vector-icons/Ionicons';
+import AntDesign from 'react-native-vector-icons/AntDesign';
+import Entypo from 'react-native-vector-icons/Entypo';
 
 const familyMap = {
-    Ionicons: IconIonicons
+    Ionicons,
+    Entypo,
+    AntDesign
 };
 
 class IconPicker extends Component {
@@ -42,6 +44,11 @@ class IconPicker extends Component {
         return data;
     };
 
+    onSelect = (item) => {
+        this.setState({visible: false});
+        this.props.onSelect(item);
+    }
+
     renderItem = ({ item, index }) => {
         if (item.empty === true) {
             return <View style={[styles.item, styles.itemInvisible]} />;
@@ -54,10 +61,7 @@ class IconPicker extends Component {
         return (
             <TouchableOpacity
                 style={styles.item}
-                onPress={() => {
-                    this.setState({visible: false});
-                    this.props.onSelect(item);
-                }}
+                onPress={() => this.onSelect(item)}
             >
                 <Icon name={item.icon} size={30} color="#000"/>
             </TouchableOpacity>
@@ -70,8 +74,6 @@ class IconPicker extends Component {
         const {visible} = this.state;
         const {icons} = this.props;
         const title = this.props.title ? this.props.title : 'Choose icon...';
-        const loaderColor = this.props.loaderColor ? this.props.loaderColor : '#0d0';
-        const labelStyle = this.props.labelStyle ? this.props.labelStyle : {};
 
         const data = [];
         icons.map( i => {
@@ -84,15 +86,8 @@ class IconPicker extends Component {
             })
         });
 
-        console.log({data});
-        /*const data = [
-            { key: 'A' }, { key: 'B' }, { key: 'C' }, { key: 'D' }, { key: 'E' }, { key: 'F' }, { key: 'G' }, { key: 'H' }, { key: 'I' }, { key: 'J' },
-            { key: 'K' },
-            // { key: 'L' },
-        ];*/
-
         return (
-            <View>
+            <>
                 <Modal
                     animationType="fade"
                     transparent={true}
@@ -117,7 +112,7 @@ class IconPicker extends Component {
                 <TouchableOpacity onPress={() => this.setState({visible: true})}>
                     <Text>Open picker</Text>
                 </TouchableOpacity>
-            </View>
+            </>
         );
     }
 }
